@@ -1,0 +1,22 @@
+# Remove a few observations with low SNRs or mismatcing observing freuency and/or bandwidth
+1. rm guppi_56130_B1937+21_0018.15y.rf guppi_56130_B1937+21_0017_cal_0001.15y.cf guppi_56675_B1937+21_0019_cal_0001.15y.cf guppi_55340_B1937+21_0003.15y.rf
+
+# Copying the MEM solutions calculate from B1929+10 long-track observations
+2. cp -r ../../B1929+10/mem_solutions/ .
+
+# Update the DMs of the B1937+21 profiles based on DMX time series
+3. python update_dm.py
+
+# Create the database and perofrm MEM calibration on B1937+21 profiles
+4. pac -w -u mem
+5. pac -d database.txt -a -ST -e mem.calib *.dmcorr
+
+# Calculate the RMs of MEM-calibrated profiles and update the values
+6. bash update_rm.sh
+
+# Choose one of the profile to be the reference template profile
+7. cp guppi_56614_B1937+21_0016.15y.mem.calib.rmfit guppi_56614_B1937+21_0016.15y.mem.calib.rmfit.template
+
+# Calculate the METM corrections
+8. mkdir metm_solutions
+9. sbatch generate_metm_soln.sbatch

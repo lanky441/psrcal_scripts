@@ -1,0 +1,1 @@
+psradd -j 'fix refmjd' -J ../update_be_delay.psrsh -J ../img_guppi -j 'install par ../B1929+10.par' -j "e dm=3.176" -J ../zap_and_tscrunch_with_list_gb -j "e rcvr:name=`../fix_receiver_name guppi_56244_B1929+10_0006_0001.fits`" -j "e name=`../get_proper_name guppi_56244_B1929+10_0006_0001.fits`" -o guppi_B1929+10_56244.rf guppi_56244_B1929+10_0006_000*.fits
