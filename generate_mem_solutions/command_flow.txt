@@ -13,7 +13,7 @@
 5. pac -w
 6. fluxcal -f -d database.txt
 
-# Initial calibratin of the .rf file and using it to generate the complete MEM solution using `pcm`
+# Initial calibration of the .rf file and using it to generate the complete MEM solution using `pcm`
 7. pac -d database.txt *.rf
 8. pam -T -e calib.TT *.calib
 9. pcm -d database.txt -c guppi_B1929+10_56244.calib.TT -s -t2 guppi_B1929+10_56244.rf
@@ -22,3 +22,4 @@
 10. mv pcm.fits guppi_56244.mem
 11. psrplot -p calm guppi_56244.mem
 12. psrplot -p calm -c cal=1 guppi_56244.mem
+13. psrplot -p calm -c gof=1 guppi_56244.mem
