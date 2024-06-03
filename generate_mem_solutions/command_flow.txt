@@ -17,6 +17,8 @@
 7. pac -d database.txt *.rf
 8. pam -T -e calib.TT *.calib
 9. pcm -d database.txt -c guppi_B1929+10_56244.calib.TT -s -t2 guppi_B1929+10_56244.rf
+# New command using more options
+# 9. pcm -d database.txt -c guppi_B1929+10_56244.calib.TT -s -t2 -Q guppi_B1929+10_56244.rf
 
 # Rename the solution and look at it using psrplot
 10. mv pcm.fits guppi_56244.mem
