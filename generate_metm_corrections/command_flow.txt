@@ -19,4 +19,4 @@
 
 # Calculate the METM corrections
 8. mkdir metm_solutions
-9. sbatch generate_metm_soln.sbatch
+9. bash generate_metm_soln.sh
