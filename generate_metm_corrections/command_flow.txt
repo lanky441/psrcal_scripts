@@ -21,6 +21,8 @@
 8. mkdir metm_solutions
 9. bash generate_metm_soln.sh
 
-# Go to the metm_solutions directory and set gamma and phi to zero
+# Go to the metm_solutions directory and run `pcmrm` to fit and subtract RM from the METM solutions
 10. cd metm_solutions
-11. for f in pcm*.metm; do psredit -c 'pcal:eqn:val[1,2]=0' -c 'pcal:eqn:var[1,2]=0' -e metm.fz $f; done
+11. for f in pcm*.metm; do pcmrm $f; done
+# Set gamma and phi of the METM correctionsto zero
+12. for f in pcm*.rmc; do psredit -c 'pcal:eqn:val[1,2]=0' -c 'pcal:eqn:var[1,2]=0' -e metm.fz $f; done
