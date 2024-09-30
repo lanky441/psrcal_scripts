@@ -1,11 +1,11 @@
 # Run the following set of commands to generate a MEM polarization response solution from a long-track pulsar observation
 # This example command are run on a long track observation of PSR B1929+10 with GBT 800 MHz receiver on MJD 56244
 
-# Creating rf and cf files
+# Creating rf and cf files and apply basic RFI zapping
 1. bash create_rf.sh
 2. bash create_cf.sh
 
-# Removing a few channels with FRI
+# Removing a few channels with RFI
 3. paz -z "15 16 20 21 108 113" -m *.cf
 4. paz -z "15 16 20 21 108 113" -m *.rf
 
@@ -13,14 +13,13 @@
 5. pac -w
 6. fluxcal -f -d database.txt
 
-# Initial calibration of the .rf file and using it to generate the complete MEM solution using `pcm`
+# Initial calibration of the .rf file
 7. pac -d database.txt *.rf
+
+# The above command will create a *.calib file. Use `pam` to Tscrunch the *.calib file
 8. pam -T -e calib.TT *.calib
 
-# Old one
-# 9. pcm -d database.txt -c guppi_B1929+10_56244.calib.TT -s -t2 guppi_B1929+10_56244.rf
-
-# New command using more options
+# Run `pcm` command to generate the complete MEM solution
 9. pcm -d database.txt -s -Q -n 128 -t 16 -c guppi_B1929+10_56244.calib.TT  guppi_B1929+10_56244.rf
 
 # Rename the solution and look at it using psrplot
